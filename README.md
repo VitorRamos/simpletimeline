@@ -1,5 +1,5 @@
 # simpletimeline
-simple python script to create timeline
+simple python script to create timeline using matplotlib
 
 
 ```python
