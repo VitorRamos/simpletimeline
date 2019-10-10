@@ -11,14 +11,14 @@ class event:
     l_count= 0
     def __init__(self, begin, text, end=None, duration=None, level=None):
         if end and duration:
-            raise("Can't specify both end and duration")
+            raise Exception("Can't specify both end and duration")
         self.begin= begin
         if duration:
             self.duration= duration
         elif end:
             self.duration= end-begin
         else:
-            raise("Need to specify end or duration")
+            raise Exception("Need to specify end or duration")
 
         if level == None:
             self.level= event.l_count
