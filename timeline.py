@@ -9,7 +9,7 @@ matplotlib.style.use("seaborn")
 
 class event:
     l_count= 0
-    def __init__(self, begin, text, end=None, duration=None, level=None):
+    def __init__(self, begin, text, end=None, duration=None, level=None, color=None):
         if end and duration:
             raise Exception("Can't specify both end and duration")
         self.begin= begin
@@ -26,6 +26,11 @@ class event:
         else:
             self.level= level
         self.text= text
+
+        if color:
+            self.color= color
+        else:
+            self.color= (0,0.5,0.5,1)
 
 class milestone:
     def __init__(self, date, text):
@@ -56,7 +61,7 @@ class timeline:
         """
         for e in self.evs:
             rev_lab= len(self.evs)-e.level
-            self.ax.barh(rev_lab, e.duration.total_seconds()/(60*60*24), left=e.begin, color=(0,0.5,0.5,1))
+            self.ax.barh(rev_lab, e.duration.total_seconds()/(60*60*24), left=e.begin, color=e.color)
             self.ax.text(e.begin+e.duration, rev_lab, e.text, weight='bold')
             # self.ax.plot([e.begin+e.duration, e.begin+e.duration], [rev_lab,  0.4], c= (0.5,0.5,0.5,0.6))
 
